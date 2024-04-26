@@ -14,8 +14,7 @@ NEXTAUTH_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
-Image Demo
-![Capture](https://github.com/musawir72/nextjs/assets/50452318/1a1738bb-c4c7-441f-baac-af8f9fc77c2d)
+
 
 
 
