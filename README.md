@@ -1,3 +1,7 @@
+Screenshot Deom
+you can find all the demo images in public directory inside demo
+
+
 # How to Use?
 
 Clone this repository.
