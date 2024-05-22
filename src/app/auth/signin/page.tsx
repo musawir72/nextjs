@@ -1,13 +1,22 @@
 import LoginButton from "@/components/buttons/LoginButton";
-
+const apiDomain =process.env.NEXTAUTH_URL || null
 async function getProviders() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/providers`);
+
+  try {
+    if(!apiDomain){
+      return []
+    }
+    const res = await fetch(`${apiDomain}/api/auth/providers`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch providers");
   }
 
   return res.json();
+  } catch (error) {
+    throw new Error('Failed to fetch providers')
+  }
+  
 }
 
 export default async function SignIn() {
@@ -26,3 +35,4 @@ export default async function SignIn() {
     </div>
   );
 }
+
