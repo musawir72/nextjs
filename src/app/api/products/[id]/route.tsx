@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function PUT(request:any,{params}){
+export async function PUT(request:any,{ params }: { params: any }){
     const {title,description,price,category,brand,stock,thumbnail} = request.json();
     const {id} = params
 

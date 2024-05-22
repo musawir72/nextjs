@@ -1,6 +1,6 @@
 // store/productsSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk } from './index';
+import { AppThunk } from '../store/index';
 import axios from 'axios';
 
 interface Product {
@@ -58,9 +58,9 @@ export const fetchProducts = (): AppThunk => async (dispatch) => {
   debugger
   dispatch(productsLoading());
   try {
-    const response = await axios.get<Product[]>('/api/products');
+    const response = await axios.get<{ products: Product[] }>('/api/products');
     
-    dispatch(productsReceived(response.data?.products?.products));
+    dispatch(productsReceived(response.data.products));
   } catch (error) {
     dispatch(productsError('Failed to fetch products.'));
   }

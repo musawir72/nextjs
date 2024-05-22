@@ -8,7 +8,7 @@ interface ProductTableProps {
   products: Product[];
 }
 
-const ProductTable: React.FC<ProductTableProps> = ({ products }) => {
+const ProductTable: React.FC<any> = ({ products }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage] = useState<number>(5);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -39,7 +39,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products }) => {
   };
 
   const filterProducts = (category: string, brand: string, search: string) => {
-    let filtered = products.filter((product) => {
+    let filtered = products.filter((product:any) => {
       return (
         (category === '' || product.category.toLowerCase().includes(category.toLowerCase())) &&
         (brand === '' || product.brand.toLowerCase().includes(brand.toLowerCase())) &&
@@ -63,8 +63,19 @@ const ProductTable: React.FC<ProductTableProps> = ({ products }) => {
   }
 
   // Extract unique categories and brands for select options
-  const categories = [...new Set(products.map((product) => product.category))];
-  const brands = [...new Set(products.map((product) => product.brand))];
+  const categories: any = [];
+  products.forEach((product:any) => {
+    if (categories.indexOf(product.category) === -1) {
+      categories.push(product.category);
+    }
+  });
+
+  const brands: any = [];
+  products.forEach((product:any) => {
+    if (brands.indexOf(product.brand) === -1) {
+      brands.push(product.brand);
+    }
+  });
 
   return (
     <>
@@ -76,7 +87,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products }) => {
             onChange={handleCategoryFilterChange}
           >
             <option value="">Filter by category</option>
-            {categories.map((category, index) => (
+            {categories.map((category:any, index:any) => (
               <option key={index} value={category}>
                 {category}
               </option>
@@ -90,7 +101,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products }) => {
             onChange={handleBrandFilterChange}
           >
             <option value="">Filter by brand</option>
-            {brands.map((brand, index) => (
+            {brands.map((brand:any, index:any) => (
               <option key={index} value={brand}>
                 {brand}
               </option>
@@ -107,14 +118,14 @@ const ProductTable: React.FC<ProductTableProps> = ({ products }) => {
           />
         </div>
         <div>
-        <button className="bg-stone-400 px-3 py-2 rounded text-white shadow-md hover:bg-stone-500">
-        <Link href="/protected/addProduct">
-          <div className="flex items-center">
-            <HiDocumentAdd size={24} className="mr-1" />
-            Add Product
-          </div>
-        </Link>
-       </button>
+          <button className="bg-stone-400 px-3 py-2 rounded text-white shadow-md hover:bg-stone-500">
+            <Link href="/protected/addProduct">
+              <div className="flex items-center">
+                <HiDocumentAdd size={24} className="mr-1" />
+                Add Product
+              </div>
+            </Link>
+          </button>
         </div>
       </div>
 

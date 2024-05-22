@@ -2,7 +2,7 @@
 import { HiOutlineTrash } from "react-icons/hi"
 import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../reducers/productsSlice';
-export default function RemoveProduct ({id}){
+export default function RemoveProduct ({id}: { id: any }){
     const dispatch = useDispatch();
     const removeProdcut = async()=> {
         const confirmed = confirm('Are you sure?')
