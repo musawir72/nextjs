@@ -24,7 +24,7 @@ export default function RootLayout({
 
   {/* Sidebar */}
   <div className = {showSidebar ? '' : 'hidden'}>
-  <Sidebar showSidebar={showSidebar}  />
+  <Sidebar />
   </div>
  
 

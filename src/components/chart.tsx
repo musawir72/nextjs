@@ -1,13 +1,8 @@
 import { Bar } from 'react-chartjs-2';
-import { Product } from '../utils/api';
 
-interface ChartProps {
-  products: Product[];
-}
-
-const Chart: React.FC<ChartProps> = ({ products }) => {
+const Chart: React.FC<any> = ({ products }) => {
   // Count products by category
-  const categoryCounts = products.reduce((acc, product) => {
+  const categoryCounts = products.reduce((acc:any, product:any) => {
     acc[product.category] = (acc[product.category] || 0) + 1;
     return acc;
   }, {});
@@ -25,7 +20,7 @@ const Chart: React.FC<ChartProps> = ({ products }) => {
     ],
   };
 
-  const options = {
+  const options: any = {
     scales: {
       yAxes: [{
         ticks: {

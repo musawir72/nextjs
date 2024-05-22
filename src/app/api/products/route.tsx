@@ -11,10 +11,10 @@ import { NextResponse } from "next/server";
         throw new Error(`Failed to fetch products: ${response.statusText}`);
       }
       const products = await response.json();
-      return Response.json({ products })
+      return NextResponse.json({ products });
     } catch (error) {
       console.error('Error fetching products:', error);
-      return [];
+      return NextResponse.json({});
     }
   }
 
@@ -26,6 +26,6 @@ import { NextResponse } from "next/server";
         body: JSON.stringify({ title,description,price,category,brand,stock,thumbnail})
       })
        const product =  await res.json()
-       return Response.json({ product })
+       return NextResponse.json({ product }); 
     
   }
