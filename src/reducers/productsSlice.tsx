@@ -58,9 +58,9 @@ export const fetchProducts = (): AppThunk => async (dispatch) => {
   debugger
   dispatch(productsLoading());
   try {
-    const response = await axios.get<{ products: Product[] }>('/api/products');
+    const response = await axios.get<{ products: { products: Product[] }}>('/api/products');
     
-    dispatch(productsReceived(response.data.products));
+    dispatch(productsReceived(response.data.products.products));
   } catch (error) {
     dispatch(productsError('Failed to fetch products.'));
   }
