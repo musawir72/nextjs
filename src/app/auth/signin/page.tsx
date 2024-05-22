@@ -1,11 +1,18 @@
 import LoginButton from "@/components/buttons/LoginButton";
 const apiDomain =process.env.NEXTAUTH_URL || null
+console.log('NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
 async function getProviders() {
-
+  if(!apiDomain){
+    console.error("API domain is not set");
+    return [];
+  }
+  if (typeof window === 'undefined') {
+    // If running during build time, skip the fetch
+    console.log('Running during build time, skipping fetch');
+    return [];
+  }
   try {
-    if(!apiDomain){
-      return []
-    }
+
     const res = await fetch(`${apiDomain}/api/auth/providers`);
 
   if (!res.ok) {
@@ -15,6 +22,7 @@ async function getProviders() {
   return res.json();
   } catch (error) {
     throw new Error('Failed to fetch providers')
+    return [];
   }
   
 }
